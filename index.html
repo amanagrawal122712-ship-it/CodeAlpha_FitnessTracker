@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitTrack | Fitness Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="app">
+        <header class="header">
+            <div>
+                <p class="eyebrow">YOUR PERSONAL FITNESS SPACE</p>
+                <h1>FitTrack<span>.</span></h1>
+                <p class="subtitle">Small steps. Stronger you.</p>
+            </div>
+            <div class="date-badge" id="currentDate">Today</div>
+        </header>
+
+        <section class="welcome">
+            <div>
+                <p class="eyebrow">KEEP MOVING FORWARD</p>
+                <h2>Your progress, at a glance.</h2>
+                <p>Track your activity and build healthier habits.</p>
+            </div>
+            <div class="welcome-icon">🏃</div>
+        </section>
+
+        <section class="stats-grid">
+            <article class="stat-card">
+                <div class="stat-top">
+                    <span>👟 Steps Today</span>
+                    <span class="stat-icon">↗</span>
+                </div>
+                <h2 id="stepsValue">0</h2>
+                <p>Goal: 10,000 steps</p>
+                <div class="progress-track">
+                    <div class="progress-fill" id="stepsProgress"></div>
+                </div>
+                <small id="stepsPercent">0% of daily goal</small>
+            </article>
+
+            <article class="stat-card">
+                <div class="stat-top">
+                    <span>🔥 Calories Burned</span>
+                    <span class="stat-icon">↗</span>
+                </div>
+                <h2><span id="caloriesValue">0</span> <small>kcal</small></h2>
+                <p>Daily goal: 500 kcal</p>
+                <div class="progress-track">
+                    <div class="progress-fill orange" id="caloriesProgress"></div>
+                </div>
+                <small id="caloriesPercent">0% of daily goal</small>
+            </article>
+
+            <article class="stat-card">
+                <div class="stat-top">
+                    <span>⏱️ Workout Time</span>
+                    <span class="stat-icon">↗</span>
+                </div>
+                <h2><span id="minutesValue">0</span> <small>min</small></h2>
+                <p>Daily goal: 60 minutes</p>
+                <div class="progress-track">
+                    <div class="progress-fill blue" id="minutesProgress"></div>
+                </div>
+                <small id="minutesPercent">0% of daily goal</small>
+            </article>
+        </section>
+
+        <section class="main-grid">
+            <article class="panel">
+                <div class="panel-heading">
+                    <div>
+                        <p class="eyebrow">YOUR ACTIVITY</p>
+                        <h2>Weekly Overview</h2>
+                    </div>
+                    <span class="live-badge">● This week</span>
+                </div>
+                <div class="chart-container">
+                    <canvas id="activityChart"></canvas>
+                </div>
+            </article>
+
+            <article class="panel goal-panel">
+                <p class="eyebrow">DAILY TARGET</p>
+                <h2>Step Goal</h2>
+                <div class="goal-circle" id="goalCircle">
+                    <div>
+                        <strong id="goalPercent">0%</strong>
+                        <span>completed</span>
+                    </div>
+                </div>
+                <p class="goal-description" id="goalMessage">
+                    Every step counts. Let's get moving!
+                </p>
+            </article>
+        </section>
+
+        <section class="main-grid lower-grid">
+            <article class="panel">
+                <div class="panel-heading">
+                    <div>
+                        <p class="eyebrow">DAILY ACTIVITY</p>
+                        <h2>Update Your Progress</h2>
+                    </div>
+                </div>
+
+                <form id="stepsForm" class="form-group">
+                    <label for="stepsInput">Steps completed today</label>
+                    <div class="input-row">
+                        <input type="number" id="stepsInput" min="0"
+                            max="100000" placeholder="e.g. 3500" required>
+                        <button type="submit" class="primary-btn">Save Steps</button>
+                    </div>
+                </form>
+
+                <form id="workoutForm" class="form-group">
+                    <label for="workoutName">Workout name</label>
+                    <input type="text" id="workoutName"
+                        placeholder="e.g. Running, Cycling, Yoga" required>
+
+                    <div class="two-columns">
+                        <div>
+                            <label for="workoutDuration">Duration (minutes)</label>
+                            <input type="number" id="workoutDuration"
+                                min="1" max="1440" placeholder="30" required>
+                        </div>
+                        <div>
+                            <label for="workoutCalories">Calories burned</label>
+                            <input type="number" id="workoutCalories"
+                                min="0" max="20000" placeholder="200" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="primary-btn full-btn">
+                        + Log Workout
+                    </button>
+                </form>
+            </article>
+
+            <article class="panel">
+                <div class="panel-heading">
+                    <div>
+                        <p class="eyebrow">YOUR JOURNEY</p>
+                        <h2>Recent Workouts</h2>
+                    </div>
+                    <span class="count-badge" id="workoutCount">0</span>
+                </div>
+                <div id="workoutList" class="workout-list">
+                    <div class="empty-state">
+                        <span>💪</span>
+                        <p>No workouts logged yet.</p>
+                        <small>Add your first workout to get started.</small>
+                    </div>
+                </div>
+                <button id="clearWorkoutsBtn" class="secondary-btn">
+                    Clear Workout History
+                </button>
+            </article>
+        </section>
+
+        <footer>
+            <p>FITTRACK <span>•</span> CodeAlpha Internship — Task 3</p>
+            <p>Stay consistent. Celebrate progress.</p>
+        </footer>
+    </div>
+
+    <div id="toast" class="toast" role="status"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
